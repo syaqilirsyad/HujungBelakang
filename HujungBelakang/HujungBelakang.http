@@ -1,0 +1,6 @@
+@HujungBelakang_HostAddress = http://localhost:5175
+
+GET {{HujungBelakang_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
