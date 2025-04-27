@@ -12,7 +12,6 @@ builder.Services.AddControllers();
 //log4net windows sini
 var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
 XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
-builder.Logging.AddLog4Net("log4net.config");
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
@@ -21,8 +20,8 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationInsightsTelemetry();
-//builder.Logging.AddAzureWebAppDiagnostics();
-//builder.Logging.SetMinimumLevel(LogLevel.Information);
+builder.Logging.AddAzureWebAppDiagnostics();
+builder.Logging.SetMinimumLevel(LogLevel.Information);
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
