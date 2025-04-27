@@ -25,7 +25,7 @@ namespace HujungBelakang.Controllers
         private void LogResponse(TrxMessageResponseModel response)
         {
             var serializedResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { WriteIndented = true });
-            _logger.LogTrace($"Response body: {serializedResponse}");
+            _logger.LogInformation($"Response body: {serializedResponse}");
         }
 
         private static readonly Dictionary<string, (string Key, string Password)> partners = new()
@@ -48,7 +48,7 @@ namespace HujungBelakang.Controllers
                 items = req.items
             };
             var serializedRequest = JsonSerializer.Serialize(encrequest, new JsonSerializerOptions { WriteIndented = true });
-            _logger.LogTrace($"Request body (safe): {serializedRequest}");
+            _logger.LogInformation($"Request body: {serializedRequest}");
 
             if (!ModelState.IsValid)
             {
