@@ -17,6 +17,7 @@ namespace HujungBelakang.Controllers
     public class PaymentRequestController : ControllerBase
     {
         private readonly ILogger<PaymentRequestController> _logger;
+        private static readonly ILog _log = LogManager.GetLogger(typeof(PaymentRequestController));
 
         public PaymentRequestController(ILogger<PaymentRequestController> logger)
         {
@@ -26,6 +27,7 @@ namespace HujungBelakang.Controllers
         {
             var serializedResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { WriteIndented = true });
             _logger.LogInformation($"Response body: {serializedResponse}");
+            _log.Info($"Response body: {serializedResponse}");
         }
 
         private static readonly Dictionary<string, (string Key, string Password)> partners = new()
@@ -49,6 +51,7 @@ namespace HujungBelakang.Controllers
             };
             var serializedRequest = JsonSerializer.Serialize(encrequest, new JsonSerializerOptions { WriteIndented = true });
             _logger.LogInformation($"Request body: {serializedRequest}");
+            _log.Info($"Request body: {serializedRequest}");
 
             if (!ModelState.IsValid)
             {
